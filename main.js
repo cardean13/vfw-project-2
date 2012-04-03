@@ -28,6 +28,29 @@ window.addEventListener("DOMcontentloaded", function(){
 		selectoptgroup.appendChild(makeSelect);
 	}
 	
+	function saveData(){
+		var id = Math.floor(Math.random()*123456);
+		//gather form field data, store in object, object contains array with form label and input value
+		var item = {};
+			item.fname =["First Name:", e("fname").value];
+			item.lname =["Last Name:", e("lname").value];
+			//sex
+			item.sex =["First Name", e("fname").value];
+			item.age =["Age", e("ageRange").value];
+			item.reliable =["Is the borrower reliable?", e("reliable").value];
+			item.job =["Do they have a job?", e("job").value];
+			item.replace =["If broken, could they replace it?", e("replace").value];
+			item.trust =["Do you fully trust them?", e("trust").value];
+			item.dname =["Disc Name", e("dname").value];
+			item.value =["Value", e("value").value];
+			item.ldate =["Date Lent", e("ldate").value];
+			item.rdate =["Expected Return Date", e("rdate").value];
+			item.comments =["Anymore Information?", e("comments").value];
+
+	}
+	
+	
+	
 	// variable defaults
 	var typeOfMedia = ["--Movies--", "DVD", "VHS", "Blu-Ray", "--Games--", "Xbox 360", "PS3", "Wii" ]
 	wheelHouse();
