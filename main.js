@@ -6,33 +6,33 @@
 
 //wait till DOM is ready
 window.addEventListener("DOMcontentloaded", function(){
-	
-	alert(localStorage.value(0));
+
 	//get element by ID function
 	function e(x){
-		var id = document.getElementById(x);
-		return id;
+		var elemental = document.getElementById(x);
+		return elemental;
 	}
 	
 	//create select field element, populate with options
 	function wheelHouse (){
 		var formTag = document.getElementsByTagName("form"),
-			selectoptgroup = e("select"),
+			selectLi = e("select"),
 			makeSelect = document.createElement("select");
-			makeSelect.setAttribute("id", "groups")
+			makeSelect.setAttribute("id", "groups");
+		//comeback to type of media
 		for (var i=0, j=typeOfMedia.length; i<j; i++){
 			var makeOption = document.createElement("option");
 			var optText = typeOfMedia[i];
 			makeOption.setAttribute("value", optText);
-			makeOption.innerHTML=optText;
+			makeOption.innerHTML = optText;
 			makeSelect.appendChild(makeOption);
 		}
-		selectoptgroup.appendChild(makeSelect);
+		selectLi.appendChild(makeSelect);
 	}
 	
 	//find value of radio button
 	function getSelectedRadio(){
-		var radio = document.form[0].sex;
+		var radios = document.form[0].sex;
 		for(var i=0; i<radios.length; i++){
 			if(radios[i].checked){
 				sexValue = radios[i].value;
@@ -71,12 +71,13 @@ window.addEventListener("DOMcontentloaded", function(){
 			trustValue = "No"
 		}
 	}
-	function saveData(){
-		var id = Math.floor(Math.random()*123456);
+	function storeData(){
+		var id = Math.floor(Math.random()*100000001);
 		//gather form field data, store in object, object contains array with form label and input value
 		getSelectedRadio();
 		getCheckBoxValue();		
 		var item = {};
+			item.group =["Group", e("groups").value];
 			item.fname =["First Name:", e("fname").value];
 			item.lname =["Last Name:", e("lname").value];
 			item.sex =["Sex", sexValue];
@@ -95,7 +96,28 @@ window.addEventListener("DOMcontentloaded", function(){
 		alert("Information Logged");
 	}
 	
-	
+	function getData(){
+		var makeDiv = document.createElement("div");
+		makeDiv.setAttribute("id", "items");
+		var makeList = document.createElement("ul");
+		makeDiv.appendChild(makeList);
+		document.body.appendChild(makeDiv);
+		for(var i = 0, len = localStorage.length; i<len; i++){
+			var makeli = document.createElement("li");
+			makeList.appendChild(makeli);
+			var key = localStorage.key(i);
+			var value = localStorage.getItem(key);
+			var obj = JSON.parse(value);
+			var makeSubList = document.createElement("ul");
+			makeli.appendChild(makeSubList);
+			for(var n in obj){
+				var makeSubli = document.createElement("li");
+				makeSubList.appendChild(makeSubli);
+				var optSubText = obj[n][0]+" "+obj[n][1];
+				makeSubli.innerHTML = optSubText;
+			}
+		}
+	}
 	
 	// variable defaults
 	var typeOfMedia = ["--Movies--", "DVD", "VHS", "Blu-Ray", "--Games--", "Xbox 360", "PS3", "Wii" ],
@@ -114,22 +136,4 @@ window.addEventListener("DOMcontentloaded", function(){
 	viewLink.addEventListener("click", getData);
 	var save = e("submit");
 	save.addEventListener("click", saveData);
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-});
+}})

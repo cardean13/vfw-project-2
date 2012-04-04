@@ -11,7 +11,7 @@
 		<meta name="robots" content="noindex, nofollow" />
 		<meta name="viewport" content="user-scalable=no, width=device-width"/>
 		<title>  Game&#47;DVD Lender </title>		
-		<link href="css/style.css" rel="stylesheet" type="text/css"/>
+		<link href="styles.css" rel="stylesheet" type="text/css"/>
 	</head>
 	<body>
 		<header>
@@ -22,7 +22,7 @@
 			<legend>Account Information</legend>
 			<span>&#42;Required Data</span>
 			<ul id="errors"></ul>
-				<li><label for="fname">&#42; First Name:</label><input type="text" id="fname"/></li>
+				<li><label for="fname">&#42; First Name:</label><input type="text" id="fname"/></li> 
 				<li><label for="lname">&#42; Last Name:</label><input type="text" id="lname"/></li>
 				<li><input type="radio" value="Male" id="male" name="sex" /> <label for="male">Male</label></li>
 				<li><input type="radio" value="Female" id="female" name="sex" /> <label for="female">Female</label></li>
@@ -33,6 +33,7 @@
 			<fieldset>
 				<legend>Questions</legend>
 				<span>Check For Yes</span>
+				<ul id="errors"></ul>
 					<li><label for="reliable" >Is the borrower reliable?</label><input type="checkbox" value="Yes" id="reliable"/></li>
 					<li><label for="job" >Do they have a job?</label><input type="checkbox" value="Yes" id="job"/></li>
 					<li><label for="replace" >If broken, could they replace it?</label><input type="checkbox" value="Yes" id="replace"/></li>
@@ -41,7 +42,7 @@
 			<fieldset>
 				<legend>Disc Information</legend>
 				<label for="media">&#42; Type of Media</label>
-					<select>
+					<select id="media">
 						<optgroup label="Movies">
 							<option value="dvd">DVD</option>
 							<option value="vhs">VHS</option>
@@ -65,6 +66,6 @@
 			<a href="#" id="allAccounts">View All Accounts</a>
 			<a href="additem.html" id="addAccount" style="display:none;">Add New Account</a>
 		</nav>
-		<script src="js/main.js" type="text/javascript"></script>
+		<script src="main.js" type="text/javascript"></script>
 	</body>
 </html>
