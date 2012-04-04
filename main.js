@@ -5,7 +5,7 @@
 
 
 //wait till DOM is ready
-window.addEventListener("DOMcontentloaded", function(){
+window.addEventListener("DOMContentLoaded", function(){
 
 	//get element by ID function
 	function e(x){
@@ -14,7 +14,7 @@ window.addEventListener("DOMcontentloaded", function(){
 	}
 	
 	//create select field element, populate with options
-	function wheelHouse (){
+	function wheelHouse(){
 		var formTag = document.getElementsByTagName("form"),
 			selectLi = e("select"),
 			makeSelect = document.createElement("select");
@@ -32,7 +32,7 @@ window.addEventListener("DOMcontentloaded", function(){
 	
 	//find value of radio button
 	function getSelectedRadio(){
-		var radios = document.form[0].sex;
+		var radios = document.forms[0].sex;
 		for(var i=0; i<radios.length; i++){
 			if(radios[i].checked){
 				sexValue = radios[i].value;
@@ -71,7 +71,7 @@ window.addEventListener("DOMcontentloaded", function(){
 			trustValue = "No"
 		}
 	}
-	function storeData(){
+	function saveData(){
 		var id = Math.floor(Math.random()*100000001);
 		//gather form field data, store in object, object contains array with form label and input value
 		getSelectedRadio();
@@ -131,9 +131,10 @@ window.addEventListener("DOMcontentloaded", function(){
 	
 	//links and submit button
 	var removeLink = e ("remove");
-	removeLink.addEventListener("click", deleteData);
+	//removeLink.addEventListener("click", deleteData);
 	var viewLink = e ("allAccounts");
 	viewLink.addEventListener("click", getData);
 	var save = e("submit");
 	save.addEventListener("click", saveData);
-}})
+
+});
