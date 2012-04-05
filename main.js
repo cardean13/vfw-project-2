@@ -71,25 +71,46 @@ window.addEventListener("DOMContentLoaded", function(){
 			trustValue = "No"
 		}
 	}
+	
+	function toggleControls(n){
+		switch(n){
+			case "on":
+				e("accountInfo").style.display = "none";
+				e("remove").style.display = "inline";
+				e("allAccounts").style.display = "none";
+				e("addAccount").style.display = "inline";
+				break;
+			case "off":
+				e("accountInfo").style.display = "block";
+				e("remove").style.display = "inline";
+				e("allAccounts").style.display = "inline";
+				e("addAccount").style.display = "none";
+				e("items").style.display = "none";
+				break;
+			default:
+				return false;
+		}
+	}
+	
 	function saveData(){
 		var id = Math.floor(Math.random()*100000001);
 		//gather form field data, store in object, object contains array with form label and input value
 		getSelectedRadio();
 		getCheckBoxValue();		
 		var item = {};
-			item.group =["Group", e("groups").value];
 			item.fname =["First Name:", e("fname").value];
 			item.lname =["Last Name:", e("lname").value];
-			item.sex =["Sex", sexValue];
-			item.age =["Age", e("ageRange").value];
+			item.sex =["Sex:", sexValue];
+			item.age =["Age:", e("ageRange").value];
 			item.reliable =["Is the borrower reliable?", reliableValue];
 			item.job =["Do they have a job?", jobValue];
 			item.replace =["If broken, could they replace it?", replaceValue];
 			item.trust =["Do you fully trust them?", trustValue];
-			item.dname =["Disc Name", e("dname").value];
-			item.value =["Value", e("value").value];
-			item.ldate =["Date Lent", e("ldate").value];
-			item.rdate =["Expected Return Date", e("rdate").value];
+			item.group =["Group:", e("groups").value];
+			item.dname =["Disc Name:", e("dname").value];
+			item.value =["Value:", e("value").value];
+			item.ldate =["Date Lent:", e("ldate").value];
+			item.rdate =["Expected Return Date:", e("rdate").value];
 			item.comments =["Anymore Information?", e("comments").value];
 
 		localStorage.setItem(id, JSON.stringify(item));
@@ -97,11 +118,16 @@ window.addEventListener("DOMContentLoaded", function(){
 	}
 	
 	function getData(){
+		toggleControls("on");
+		if(localStorage.length === 0){
+			alert("No saved accounts");
+		}
 		var makeDiv = document.createElement("div");
 		makeDiv.setAttribute("id", "items");
 		var makeList = document.createElement("ul");
 		makeDiv.appendChild(makeList);
 		document.body.appendChild(makeDiv);
+		e("items").style.display = "block";
 		for(var i = 0, len = localStorage.length; i<len; i++){
 			var makeli = document.createElement("li");
 			makeList.appendChild(makeli);
@@ -119,6 +145,16 @@ window.addEventListener("DOMContentLoaded", function(){
 		}
 	}
 	
+	function deleteData(){
+		if(localStorage.legnth === 0){
+			alert("Nothing to delete!")
+		}else{
+			localStorage.clear();
+			alert("All accounts deleted.");
+			window.location.reload();
+			return false;
+		}
+	}
 	// variable defaults
 	var typeOfMedia = ["--Movies--", "DVD", "VHS", "Blu-Ray", "--Games--", "Xbox 360", "PS3", "Wii" ],
 		sexValue,
@@ -131,7 +167,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	//links and submit button
 	var removeLink = e ("remove");
-	//removeLink.addEventListener("click", deleteData);
+	removeLink.addEventListener("click", deleteData);
 	var viewLink = e ("allAccounts");
 	viewLink.addEventListener("click", getData);
 	var save = e("submit");
