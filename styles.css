@@ -1,0 +1,49 @@
+/*
+
+Yusef Hassan
+VFW 0412
+Project 2
+
+*/
+
+
+
+
+h1{
+
+	font: 24px helvetica;
+	margin: 20px 10px;
+	padding: 10px;
+	font-weight: bold;
+	border: 1px solid black;
+	width: 300px;
+	color: #242e30;
+	background-color: #8eb6be;
+
+}
+
+a{
+	font: 16px Arial;
+	margin: 20px 10px;
+	color: #0d3dcf;
+}
+
+a:hover{
+	color: #cfcf34;
+}
+
+
+fieldset{
+	font: 18px times ;
+	margin: 30px 10px;
+	background: #cfcfcf;
+
+}
+
+label{
+	color: #000000;
+	padding-top: 10px
+}
+
+
+
